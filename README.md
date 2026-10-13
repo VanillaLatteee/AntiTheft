@@ -1,6 +1,6 @@
 # AntiTheft
 
-AntiTheft is a cross-platform recovery-assistance product for an owner's own Android and iOS devices. This repository currently contains the **Phase 0 foundation only**: a Flutter protector shell, a Next.js recovery portal shell, a FastAPI service with health endpoints, shared contracts, local infrastructure, tests, and product/security documentation.
+AntiTheft is a cross-platform recovery-assistance product for an owner's own Android and iOS devices. The repository contains the Phase 0 foundation plus the **Phase 1 and Phase 2 mobile implementation**: security onboarding, a readiness dashboard, private MP3/WAV recovery-audio management, and active-app native playback controls.
 
 The project deliberately does not claim to bypass operating-system restrictions. Push delivery is not proof of siren execution, iOS cannot guarantee arbitrary 60-second background playback, and Android background starts, DND behavior, and vendor battery policies can prevent playback.
 
@@ -84,9 +84,10 @@ docker compose --env-file .env -f infra/docker-compose.yml up database
 - [Platform limitations](docs/PLATFORM_LIMITATIONS.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Test plan](docs/TEST_PLAN.md)
+- [Phase 1-2 real-device checklist](docs/PHASE_1_2_DEVICE_TESTS.md)
 - [Development environment snapshot](docs/DEVELOPMENT_ENVIRONMENT.md)
 
 ## Current milestone
 
-Phase 0 establishes buildable service boundaries and honest capability language. The next milestone is **Phase 1: mobile onboarding and the security readiness dashboard**, including explicit permission education, persisted setup state, revocation detection, and links/guidance for native recovery services.
+Phase 1 and Phase 2 are implemented in the mobile source and covered by Dart/widget tests. Native Android compilation still requires an installed Android SDK; iOS compilation and real-device validation require macOS/Xcode. The next product milestone is **Phase 3: authentication and device enrollment** after the Phase 1-2 physical-device checklist is signed off.
 

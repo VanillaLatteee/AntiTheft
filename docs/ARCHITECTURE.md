@@ -2,7 +2,7 @@
 
 ## Context
 
-AntiTheft uses a Flutter client, a Next.js owner portal, and a FastAPI command service backed by PostgreSQL. Firebase Authentication supplies owner identity, while FCM and APNs are planned delivery adapters. Phase 0 includes only the service shells and health contracts.
+AntiTheft uses a Flutter client, a Next.js owner portal, and a FastAPI command service backed by PostgreSQL. Firebase Authentication supplies owner identity, while FCM and APNs are planned delivery adapters. Phase 1 and Phase 2 add local mobile security setup and active-app audio playback; enrollment and remote delivery remain future phases.
 
 ## Boundaries
 
@@ -26,6 +26,8 @@ Push providers carry a command hint or opaque command identifier. The device obt
 - `platform`: narrow method/event channels implemented in Kotlin and Swift.
 
 Platform capability reporting is data, not a single cross-platform boolean. Android and iOS results must identify supported, denied, restricted, disabled, or unknown states and include a user-actionable next step.
+
+The Phase 1-2 mobile flow keeps policy and persistence in Dart repositories/controllers. A narrow method channel reads native capability state, opens official recovery/settings pages, and starts or stops playback. A separate event channel reports `playing`, `stopped`, `completed`, or `failed`. Imported bytes are validated before being copied under the application's documents directory; only metadata is placed in secure storage. Both native adapters reject paths outside the application sandbox and stop playback when the app leaves the active foreground lifecycle.
 
 ## API
 

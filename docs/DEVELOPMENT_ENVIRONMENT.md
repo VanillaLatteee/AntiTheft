@@ -1,6 +1,6 @@
 # Development Environment Snapshot
 
-Observed on 2026-10-13 during Phase 0 initialization. This is a workstation snapshot, not a production support matrix.
+Observed on 2026-10-13 during Phase 0 initialization and Phase 1-2 verification. This is a workstation snapshot, not a production support matrix.
 
 ## Available tools
 
@@ -19,7 +19,7 @@ Observed on 2026-10-13 during Phase 0 initialization. This is a workstation snap
 
 ## Current blockers and limitations
 
-- Flutter Doctor cannot locate an Android SDK. Android Studio is installed, but an SDK must be installed/configured with `flutter config --android-sdk <path>` before an Android build or POCO X6 Pro device run.
+- Flutter Doctor cannot locate an Android SDK. Android Studio is installed, but an SDK must be installed/configured with `flutter config --android-sdk <path>` before an Android build or POCO X6 Pro device run. The Phase 1-2 `:app:compileDebugKotlin` verification reached Android project configuration and then failed for this exact missing-SDK condition.
 - iOS compilation, signing, CocoaPods, APNs validation, and device tests cannot run on Windows; use a macOS/Xcode environment.
 - Docker Desktop's Linux engine was not running during verification, so full image builds and container startup could not be executed. `docker compose ... config` passed.
 - Node 22.12.0 is one patch below the `>=22.13.0` engine requirement reported by a current lint dependency. Next.js lint and production build still passed, but Node should be updated before CI is established.

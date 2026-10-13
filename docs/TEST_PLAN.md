@@ -7,13 +7,15 @@
 - Assert state terminology: transport delivery must never satisfy an execution assertion.
 - Record OS/build/vendor/permission conditions with every manual result.
 
-## Phase 0 automated checks
+## Automated checks
 
 ### Mobile
 
 - `flutter analyze`
 - `flutter test`
-- Widget smoke test verifies product identity and Phase 0 status.
+- Unit tests verify MP3/WAV signature, extension, size, and byte-count validation.
+- Repository tests verify secure onboarding state, denial-request suppression, private audio copy, restore, and deletion.
+- Widget tests verify onboarding completion and local 60-second play/stop controls through fake platform boundaries.
 
 ### Web
 
@@ -31,7 +33,7 @@
 
 - `docker compose --env-file .env.example -f infra/docker-compose.yml config`
 
-## Later-phase matrix
+## Phase 1-2 device matrix
 
 ### Mobile permission/onboarding
 
@@ -44,6 +46,10 @@
 - Valid/invalid MIME and extension, corrupt file, zero bytes, maximum/over-limit size.
 - Short/exact/long duration, loop, stop latency, audio focus/interruption, route change, app background/foreground.
 - Replacement and deletion remove inaccessible private copies and metadata safely.
+
+Use the detailed execution and evidence checklist in [`PHASE_1_2_DEVICE_TESTS.md`](PHASE_1_2_DEVICE_TESTS.md). These checks are not considered passed by host-side mocks.
+
+## Later-phase matrix
 
 ### Remote command
 

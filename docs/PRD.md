@@ -34,7 +34,9 @@ The primary user is a phone owner who wants a clear readiness checklist before l
 - Local Docker Compose configuration includes PostgreSQL, API, and web services.
 - Platform limitations and future acceptance criteria are documented before security-sensitive implementation begins.
 
-## Feature acceptance criteria for later phases
+## Phase 1-2 feature acceptance criteria
+
+The following behavior is implemented in source and automated tests. Acceptance remains provisional until the real-device checklist is completed on Android and iOS.
 
 ### Onboarding and readiness
 

@@ -1,6 +1,6 @@
 # Implementation Roadmap
 
-## Phase 0 — Foundation (current)
+## Phase 0 — Foundation (complete)
 
 - Monorepo and framework scaffolds
 - Environment examples and Docker Compose
@@ -10,7 +10,7 @@
 
 Exit: all available baseline checks pass, or environmental blockers are recorded precisely.
 
-## Phase 1 — Onboarding and security readiness
+## Phase 1 — Onboarding and security readiness (implemented; device validation pending)
 
 - Riverpod feature boundaries and persisted onboarding state
 - Permission education and explicit request flows
@@ -21,7 +21,7 @@ Exit: all available baseline checks pass, or environmental blockers are recorded
 
 Exit: a real device displays truthful, refreshable readiness without repeated denied-permission prompts.
 
-## Phase 2 — Local recovery siren
+## Phase 2 — Local recovery siren (implemented; device validation pending)
 
 - MP3/WAV document import, validation, size policy, and private copy
 - Secure metadata persistence, preview, replace/delete
@@ -30,7 +30,7 @@ Exit: a real device displays truthful, refreshable readiness without repeated de
 
 Exit: local playback behavior and interruptions are tested on Android/iOS, with limitations shown in the UI.
 
-## Phase 3 — Authentication and device enrollment
+## Phase 3 — Authentication and device enrollment (next)
 
 - Firebase Authentication verification
 - SQLAlchemy owner/device models and Alembic migrations
