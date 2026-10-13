@@ -1,0 +1,17 @@
+.git
+.gitignore
+.env
+**/.env
+**/.env.local
+**/.venv
+**/__pycache__
+**/.pytest_cache
+**/.mypy_cache
+**/.ruff_cache
+**/.dart_tool
+**/node_modules
+**/.next
+**/build
+**/coverage
+**/*.log
+

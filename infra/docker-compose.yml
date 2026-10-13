@@ -1,0 +1,57 @@
+name: antitheft
+
+services:
+  database:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-antitheft}
+      POSTGRES_USER: ${POSTGRES_USER:-antitheft}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - antitheft_postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  api:
+    build:
+      context: ..
+      dockerfile: services/api/Dockerfile
+    environment:
+      ANTITHEFT_ENVIRONMENT: development
+      ANTITHEFT_DATABASE_URL: postgresql+asyncpg://${POSTGRES_USER:-antitheft}:${POSTGRES_PASSWORD}@database:5432/${POSTGRES_DB:-antitheft}
+      ANTITHEFT_CORS_ORIGINS: '["http://localhost:${WEB_PORT:-3000}"]'
+    ports:
+      - "${API_PORT:-8000}:8000"
+    depends_on:
+      database:
+        condition: service_healthy
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://localhost:8000/health/live')"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    restart: unless-stopped
+
+  web:
+    build:
+      context: ..
+      dockerfile: apps/recovery-web/Dockerfile
+    environment:
+      API_BASE_URL: http://api:8000
+      NEXT_PUBLIC_APP_NAME: AntiTheft Recovery
+    ports:
+      - "${WEB_PORT:-3000}:3000"
+    depends_on:
+      api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  antitheft_postgres:
+

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://schemas.antitheft.example/v1/health.schema.json",
+  "title": "HealthResponse",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["status", "service", "version"],
+  "properties": {
+    "status": { "enum": ["ok", "ready"] },
+    "service": { "type": "string", "minLength": 1 },
+    "version": { "type": "string", "minLength": 1 },
+    "environment": { "type": "string", "minLength": 1 },
+    "checks": {
+      "type": "object",
+      "additionalProperties": { "type": "string" }
+    }
+  }
+}
+
